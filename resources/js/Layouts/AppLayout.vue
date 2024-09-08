@@ -67,12 +67,19 @@
               <Link
                 href="/"
                 class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                :class="{
+                  'bg-slate-700 hover:bg-slate-600': $page.component === 'Home',
+                }"
                 aria-current="page"
                 >Home</Link
               >
               <Link
                 href="/about"
                 class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                :class="{
+                  'bg-slate-700 hover:bg-slate-600':
+                    $page.component === 'About',
+                }"
                 >About</Link
               >
             </div>
@@ -96,11 +103,19 @@
               <Link
                 :href="route('register')"
                 class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                :class="{
+                  'bg-slate-700 hover:bg-slate-600':
+                    $page.component === 'Auth/Register',
+                }"
                 >Register</Link
               >
               <Link
                 :href="route('login')"
                 class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                :class="{
+                  'bg-slate-700 hover:bg-slate-600':
+                    $page.component === 'Auth/Login',
+                }"
                 >Login</Link
               >
             </div>
