@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::inertia('/','Home')->name('home')->middleware('auth');
 
 Route::inertia('/about','About',['name' => "Sam Samim"])->name('about');
+Route::post('/logout',LogoutController::class)->name('logout')->middleware('auth');
 Route::middleware('guest')->group(function () {
     Route::inertia('/login','Auth/Login')->name('login');
     Route::post('/login',LoginController::class);

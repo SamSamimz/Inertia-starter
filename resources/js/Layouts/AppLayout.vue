@@ -82,16 +82,28 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <div>
-            <Link
-              :href="route('register')"
-              class="rounded-md px-3 py-2 text-sm font-medium text-white"
-              >Register</Link
-            >
-            <Link
-              :href="route('login')"
-              class="rounded-md px-3 py-2 text-sm font-medium text-white"
-              >Login</Link
-            >
+            <div v-if="$page.props.auth.user">
+              <Link
+                :href="route('logout')"
+                method="post"
+                as="button"
+                type="button"
+                class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                >Logout</Link
+              >
+            </div>
+            <div v-else>
+              <Link
+                :href="route('register')"
+                class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                >Register</Link
+              >
+              <Link
+                :href="route('login')"
+                class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                >Login</Link
+              >
+            </div>
           </div>
         </div>
       </div>
