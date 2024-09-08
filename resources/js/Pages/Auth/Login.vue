@@ -4,31 +4,13 @@
       <h2 class="text-3xl font-bold text-center mb-8">Login</h2>
 
       <form @submit.prevent="signin">
-        <div class="mb-6">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
-            >Email</label
-          >
-          <input
-            type="email"
-            id="email"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your email"
-          />
-        </div>
-
-        <div class="mb-8">
-          <label
-            for="password"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            >Password</label
-          >
-          <input
-            type="password"
-            id="password"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your password"
-          />
-        </div>
+        <Input
+          name="Email"
+          type="email"
+          v-model="form.email"
+          :message="form.errors.email"
+        />
+        <Input name="Password" type="password" v-model="form.password" />
 
         <div class="flex items-center justify-between">
           <button
@@ -50,7 +32,13 @@
 </template>
 
 <script setup>
+import Input from "../../components/Input.vue";
+import { useForm } from "@inertiajs/vue3";
+const form = useForm({
+  email: "",
+  password: "",
+});
 const signin = () => {
-  console.log("Submit");
+  form.post(route("login"));
 };
 </script>
