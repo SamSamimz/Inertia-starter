@@ -3,7 +3,7 @@
     <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
       <h2 class="text-3xl font-bold text-center mb-8">Login</h2>
 
-      <form>
+      <form @submit.prevent="signin">
         <div class="mb-6">
           <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
             >Email</label
@@ -50,4 +50,7 @@
 </template>
 
 <script setup>
+const signin = () => {
+  console.log("Submit");
+};
 </script>

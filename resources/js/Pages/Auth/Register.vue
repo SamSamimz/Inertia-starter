@@ -3,12 +3,13 @@
     <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-xl">
       <h2 class="text-3xl font-bold text-center mb-8">Register</h2>
 
-      <form>
+      <form @submit.prevent="register">
         <div class="mb-6">
           <label for="name" class="block text-gray-700 text-sm font-bold mb-2"
             >Name</label
           >
           <input
+            v-model="form.name"
             type="text"
             id="name"
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -21,6 +22,7 @@
             >Email</label
           >
           <input
+            v-model="form.email"
             type="email"
             id="email"
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -35,6 +37,8 @@
             >Password</label
           >
           <input
+            v-model="form.password"
+            autocomplete="off"
             type="password"
             id="password"
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -49,6 +53,8 @@
             >Confirm Password</label
           >
           <input
+            v-model="form.password_confirmation"
+            autocomplete="off"
             type="password"
             id="confirm-password"
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,4 +82,15 @@
 </template>
 
 <script setup>
+import { useForm } from "@inertiajs/vue3";
+
+const form = useForm({
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+});
+const register = () => {
+  form.post("/register");
+};
 </script>
