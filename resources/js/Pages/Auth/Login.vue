@@ -11,6 +11,21 @@
           :message="form.errors.email"
         />
         <Input name="Password" type="password" v-model="form.password" />
+        <!-- Remember me   -->
+        <div class="flex items-center justify-between my-4">
+          <div class="flex items-center">
+            <input
+              v-model="form.remember"
+              id="remember_me"
+              name="remember_me"
+              type="checkbox"
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+              Remember me
+            </label>
+          </div>
+        </div>
 
         <div class="flex items-center justify-between">
           <button
@@ -37,6 +52,7 @@ import { useForm } from "@inertiajs/vue3";
 const form = useForm({
   email: "",
   password: "",
+  remember: false,
 });
 const signin = () => {
   form.post(route("login"));
