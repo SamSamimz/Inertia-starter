@@ -6,3 +6,5 @@ use Inertia\Inertia;
 Route::inertia('/','Home')->name('home');
 
 Route::inertia('/about','About',['name' => "Sam Samim"])->name('about');
+Route::inertia('/login','Auth/Login')->name('login');
+Route::inertia('/register','Auth/Register')->name('register');
