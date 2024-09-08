@@ -4,66 +4,28 @@
       <h2 class="text-3xl font-bold text-center mb-8">Register</h2>
 
       <form @submit.prevent="register">
-        <div class="mb-6">
-          <label for="name" class="block text-gray-700 text-sm font-bold mb-2"
-            >Name</label
-          >
-          <input
-            v-model="form.name"
-            type="text"
-            id="name"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your name"
-          />
-          <span class="text-red-500">{{ form.errors.name }}</span>
-        </div>
+        <Input name="Name" v-model="form.name" :message="form.errors.name" />
 
-        <div class="mb-6">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
-            >Email</label
-          >
-          <input
-            v-model="form.email"
-            type="email"
-            id="email"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your email"
-          />
-          <span class="text-red-500">{{ form.errors.email }}</span>
-        </div>
+        <Input
+          name="Email"
+          type="email"
+          v-model="form.email"
+          :message="form.errors.email"
+        />
 
-        <div class="mb-6">
-          <label
-            for="password"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            >Password</label
-          >
-          <input
-            v-model="form.password"
-            autocomplete="off"
-            type="password"
-            id="password"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your password"
-          />
-          <span class="text-red-500">{{ form.errors.password }}</span>
-        </div>
+        <Input
+          name="Password"
+          type="password"
+          v-model="form.password"
+          :message="form.errors.password"
+        />
 
-        <div class="mb-8">
-          <label
-            for="confirm-password"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            >Confirm Password</label
-          >
-          <input
-            v-model="form.password_confirmation"
-            autocomplete="off"
-            type="password"
-            id="confirm-password"
-            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Confirm your password"
-          />
-        </div>
+        <Input
+          name="Confirm Password"
+          type="password"
+          v-model="form.password_confirmation"
+          :message="form.errors.password_confirmation"
+        />
 
         <div class="flex items-center justify-between">
           <button
@@ -86,6 +48,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import Input from "../../components/Input.vue";
 
 const form = useForm({
   name: "",
