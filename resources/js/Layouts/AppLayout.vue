@@ -90,14 +90,25 @@
         >
           <div>
             <div v-if="$page.props.auth.user">
-              <Link
-                :href="route('logout')"
-                method="post"
-                as="button"
-                type="button"
-                class="rounded-md px-3 py-2 text-sm font-medium text-white"
-                >Logout</Link
+              <div
+                v-if="$page.props.auth.user.image"
+                class="flex space-x-4 items-center justify-center"
               >
+                <img
+                  :src="'storage/images/' + $page.props.auth.user.image"
+                  class="object-cover w-8 h-8 rounded-full"
+                  alt=""
+                />
+
+                <Link
+                  :href="route('logout')"
+                  method="post"
+                  as="button"
+                  type="button"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                  >Logout</Link
+                >
+              </div>
             </div>
             <div v-else>
               <Link

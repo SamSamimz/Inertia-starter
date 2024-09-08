@@ -26,6 +26,23 @@
           v-model="form.password_confirmation"
           :message="form.errors.password_confirmation"
         />
+        <div class="py-3">
+          <div class="mb-6">
+            <label
+              for="file-input"
+              class="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Upload File
+            </label>
+            <input
+              @change="form.image = $event.target.files[0]"
+              type="file"
+              id="file-input"
+              autocomplete="off"
+              class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+        </div>
 
         <div class="flex items-center justify-between">
           <button
@@ -55,8 +72,10 @@ const form = useForm({
   email: "",
   password: "",
   password_confirmation: "",
+  image: null,
 });
 const register = () => {
+  // console.log(form.file);
   form.post(route("register"), {
     onError: () => {
       form.reset("password", "password_confirmation");
