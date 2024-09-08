@@ -15,6 +15,7 @@
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter your name"
           />
+          <span class="text-red-500">{{ form.errors.name }}</span>
         </div>
 
         <div class="mb-6">
@@ -28,6 +29,7 @@
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter your email"
           />
+          <span class="text-red-500">{{ form.errors.email }}</span>
         </div>
 
         <div class="mb-6">
@@ -44,6 +46,7 @@
             class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter your password"
           />
+          <span class="text-red-500">{{ form.errors.password }}</span>
         </div>
 
         <div class="mb-8">
@@ -91,6 +94,10 @@ const form = useForm({
   password_confirmation: "",
 });
 const register = () => {
-  form.post("/register");
+  form.post("/register", {
+    onError: () => {
+      form.reset("password", "password_confirmation");
+    },
+  });
 };
 </script>
