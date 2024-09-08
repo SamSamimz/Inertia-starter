@@ -8,6 +8,9 @@
       :type="type"
       :id="name"
       autocomplete="off"
+      :class="{
+        '!border-red-500': message,
+      }"
       class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       placeholder="Enter your name"
     />
