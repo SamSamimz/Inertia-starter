@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -12,11 +14,16 @@ class RegisterController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $request->validate([
+        $credentials =  $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'password' => ['required', 'confirmed', 'min:6'],
         ]);
-        dd($request->all());
+
+        $auth = User::create($credentials);
+
+        Auth::login($auth);
+
+        return to_route('home');
     }
 }
