@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 Route::inertia('/','Home')->name('home')->middleware('auth');
 
-Route::inertia('/about','About',['name' => "Sam Samim"])->name('about');
+Route::inertia('/about','About')->name('about');
 Route::post('/logout',LogoutController::class)->name('logout')->middleware('auth');
 Route::middleware('guest')->group(function () {
     Route::inertia('/login','Auth/Login')->name('login');
