@@ -76,12 +76,10 @@
           class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
           :class="{
             hidden: !link.url,
-            'text-slate-100 bg-slate-900': link.active,
+            '!text-slate-100 !bg-slate-900': link.active,
           }"
         ></Link>
       </div>
-
-      <!--  -->
     </div>
   </div>
 </template>
