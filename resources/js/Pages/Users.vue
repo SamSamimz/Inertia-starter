@@ -67,7 +67,7 @@
       </div>
 
       <!-- Pagination Controls -->
-      <div class="mt-4 flex justify-center">
+      <!-- <div class="mt-4 flex justify-center">
         <Link
           v-for="link in props.users.links"
           :key="link.label"
@@ -79,7 +79,8 @@
             '!text-slate-100 !bg-slate-900': link.active,
           }"
         ></Link>
-      </div>
+      </div> -->
+      <Pagination :links="props.users.links" />
     </div>
   </div>
 </template>

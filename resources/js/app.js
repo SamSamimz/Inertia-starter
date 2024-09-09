@@ -4,6 +4,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
 import AppLayout from '../js/Layouts/AppLayout.vue'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy'
+import Pagination from './vendor/Pagination.vue';
 createInertiaApp({
   title: (title) => `Inertia ${title}`,
   resolve: name => {
@@ -18,6 +19,7 @@ createInertiaApp({
       .use(ZiggyVue)
       .component('Link',Link)
       .component('Head',Head)
+      .component('Pagination',Pagination)
       .mount(el)
   },
   progress: {
