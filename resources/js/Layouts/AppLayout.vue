@@ -89,7 +89,10 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <div>
-            <div v-if="$page.props.auth.user">
+            <div
+              v-if="$page.props.auth.user"
+              class="flex space-x-4 items-center"
+            >
               <div
                 v-if="$page.props.auth.user.image"
                 class="flex space-x-4 items-center justify-center"
@@ -99,7 +102,8 @@
                   class="object-cover w-8 h-8 rounded-full"
                   alt=""
                 />
-
+              </div>
+              <div>
                 <Link
                   :href="route('logout')"
                   method="post"
