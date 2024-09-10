@@ -85,10 +85,11 @@
 import { router } from "@inertiajs/vue3";
 import { debounce, throttle } from "lodash";
 import { ref, watch } from "vue";
-const search = ref("");
 const props = defineProps({
   users: Object,
+  searchTerm: String,
 });
+const search = ref(props.searchTerm);
 
 watch(
   search,

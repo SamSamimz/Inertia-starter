@@ -16,7 +16,8 @@ Route::get('/users', function(Request $request) {
     return inertia('Users', [
         'users' => User::when($request->search, function($query) use ($request) {
             $query->where('name', 'LIKE', '%'.$request->search.'%');
-        })->paginate(5)->withQueryString()
+        })->paginate(5)->withQueryString(),
+        'searchTerm' => $request->search
     ]);
 })->name('users')->middleware('auth');
 
