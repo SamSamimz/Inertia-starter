@@ -56,9 +56,12 @@
                 <a href="#" class="text-indigo-600 hover:text-indigo-900"
                   >Edit</a
                 >
-                <a href="#" class="ml-4 text-red-600 hover:text-red-900"
-                  >Delete</a
+                <button
+                  @click="deleteUser(user.id)"
+                  class="ml-4 text-red-600 hover:text-red-900"
                 >
+                  Delete
+                </button>
               </td>
             </tr>
             <!-- Repeat <tr> block for more rows -->
@@ -85,7 +88,13 @@
   </div>
 </template>
   <script setup>
+import { router } from "@inertiajs/vue3";
 const props = defineProps({
   users: Object,
 });
+
+const deleteUser = (id) => {
+  // router.delete(router)
+  alert(id);
+};
 </script>

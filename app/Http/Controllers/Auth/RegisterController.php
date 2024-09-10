@@ -31,6 +31,6 @@ class RegisterController extends Controller
 
         Auth::login($auth);
 
-        return to_route('home');
+        return to_route('home')->with('success','Register successfully');
     }
 }
