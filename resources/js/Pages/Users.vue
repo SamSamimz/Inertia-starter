@@ -5,7 +5,7 @@
     <div class="container mx-auto p-4">
       <div class="flex justify-end mb-4">
         <input
-          v-model="searchQuery"
+          v-model="search"
           type="search"
           placeholder="Search..."
           class="p-2 border border-gray-300 rounded"
@@ -83,18 +83,22 @@
 </template>
   <script setup>
 import { router } from "@inertiajs/vue3";
+import { debounce, throttle } from "lodash";
 import { ref, watch } from "vue";
-const searchQuery = ref("");
+const search = ref("");
 const props = defineProps({
   users: Object,
 });
 
-watch(searchQuery, (query) => {
-  console.log(query);
-});
+watch(
+  search,
+  debounce((query) => {
+    router.get("/users", { search: query }, { preserveState: true });
+  }, 500)
+);
 
 const deleteUser = (id) => {
-  if(confirm('Are you sure want to delete?')) {
+  if (confirm("Are you sure want to delete?")) {
     router.delete(route("delete", id));
   }
 };
