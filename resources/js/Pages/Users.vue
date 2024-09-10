@@ -49,10 +49,16 @@
               >
                 {{ user.id }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                :class="{ 'bg-orange-300': user.name == search }"
+              >
                 {{ user.name }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                :class="{ 'bg-orange-300': user.email == search }"
+              >
                 {{ user.email }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

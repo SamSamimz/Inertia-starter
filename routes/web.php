@@ -15,7 +15,8 @@ Route::inertia('/','Home')->name('home')->middleware('auth');
 Route::get('/users', function(Request $request) {
     return inertia('Users', [
         'users' => User::when($request->search, function($query) use ($request) {
-            $query->where('name', 'LIKE', '%'.$request->search.'%');
+            $query->where('name', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('email', 'LIKE' , '%'.$request->search.'%');
         })->paginate(5)->withQueryString(),
         'searchTerm' => $request->search
     ]);
