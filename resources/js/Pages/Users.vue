@@ -3,6 +3,14 @@
   <h1 class="text-4xl text-center py-3">Users Page</h1>
   <div class="py-3">
     <div class="container mx-auto p-4">
+      <div class="flex justify-end mb-4">
+        <input
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search..."
+          class="p-2 border border-gray-300 rounded"
+        />
+      </div>
       <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200">
           <thead>
@@ -53,9 +61,9 @@
               <td
                 class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
               >
-                <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                  >Edit</a
-                >
+                <a href="/" class="text-indigo-600 hover:text-indigo-900">
+                  Edit
+                </a>
                 <button
                   @click="deleteUser(user.id)"
                   class="ml-4 text-red-600 hover:text-red-900"
@@ -64,37 +72,30 @@
                 </button>
               </td>
             </tr>
-            <!-- Repeat <tr> block for more rows -->
           </tbody>
         </table>
       </div>
 
       <!-- Pagination Controls -->
-      <!-- <div class="mt-4 flex justify-center">
-        <Link
-          v-for="link in props.users.links"
-          :key="link.label"
-          v-html="link.label"
-          :href="link.url"
-          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          :class="{
-            hidden: !link.url,
-            '!text-slate-100 !bg-slate-900': link.active,
-          }"
-        ></Link>
-      </div> -->
       <Pagination :links="props.users.links" />
     </div>
   </div>
 </template>
   <script setup>
 import { router } from "@inertiajs/vue3";
+import { ref, watch } from "vue";
+const searchQuery = ref("");
 const props = defineProps({
   users: Object,
 });
 
+watch(searchQuery, (query) => {
+  console.log(query);
+});
+
 const deleteUser = (id) => {
-  // router.delete(router)
-  alert(id);
+  if(confirm('Are you sure want to delete?')) {
+    router.delete(route("delete", id));
+  }
 };
 </script>

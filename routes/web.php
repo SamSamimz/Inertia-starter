@@ -13,7 +13,9 @@ Route::inertia('/users', 'Users',['users' => User::paginate(5)])->name('users')-
 Route::inertia('/about','About')->name('about');
 Route::post('/logout',LogoutController::class)->name('logout')->middleware('auth');
 Route::delete('/delete/{id}', function($id) {
-    dd($id);
+    $user = User::findOrFail($id);
+    $user->delete();
+    return to_route('home')->with('success','User deleted!');
 })->name('delete');
 Route::middleware('guest')->group(function () {
     Route::inertia('/login','Auth/Login')->name('login');
