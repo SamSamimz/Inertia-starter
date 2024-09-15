@@ -22,8 +22,6 @@ Route::get('/users', function(Request $request) {
     ]);
 })->name('users')->middleware('auth');
 
-
-
 Route::inertia('/about','About')->name('about');
 Route::post('/logout',LogoutController::class)->name('logout')->middleware('auth');
 Route::delete('/delete/{id}', function($id) {

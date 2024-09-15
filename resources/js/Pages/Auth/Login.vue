@@ -31,6 +31,7 @@
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline"
+            :disabled="processing"
           >
             Sign In
           </button>
@@ -47,14 +48,27 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import Input from "../../components/Input.vue";
 import { useForm } from "@inertiajs/vue3";
+const processing = ref(false);
 const form = useForm({
   email: "",
   password: "",
   remember: false,
 });
 const signin = () => {
-  form.post(route("login"));
+  form.post(route("login"), {
+    onError: () => {
+      form.reset("password");
+    },
+    onStart: () => {
+      processing.value = true;
+    },
+    onFinish: () => {
+      processing.value = false;
+    },
+    preserveScroll: true,
+  });
 };
 </script>

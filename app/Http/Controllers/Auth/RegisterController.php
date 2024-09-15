@@ -16,10 +16,10 @@ class RegisterController extends Controller
     public function __invoke(Request $request)
     {
         $credentials =  $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', 'min:6'],
-            'image' => ['nullable', 'image','mimes:png,jpg','max:2048'],
+            'name'      => ['required', 'string', 'max:255'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'  => ['required', 'confirmed', 'min:6'],
+            'image'     => ['nullable', 'image','mimes:png,jpg','max:2048'],
         ]);
 
         if ($request->hasFile('image')) {

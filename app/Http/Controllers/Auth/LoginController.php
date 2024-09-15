@@ -14,7 +14,7 @@ class LoginController extends Controller
     public function __invoke(Request $request)
     {
         $credentials =  $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string'],
         ]);
 

@@ -66,7 +66,8 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import Input from "../../components/Input.vue";
-
+import { ref } from "vue";
+const processing = ref(false);
 const form = useForm({
   name: "",
   email: "",
@@ -75,11 +76,17 @@ const form = useForm({
   image: null,
 });
 const register = () => {
-  // console.log(form.file);
   form.post(route("register"), {
     onError: () => {
       form.reset("password", "password_confirmation");
     },
+    onStart: () => {
+      processing.value = true;
+    },
+    onFinish: () => {
+      processing.value = false;
+    },
+    preserveScroll: true,
   });
 };
 </script>
